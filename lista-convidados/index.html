@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de convidados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
-        <h1>Lista de convidados</h1>
-        <hr />
-        <ul id="lista"></ul>
-        <input id="campo" type="text" placeholder="Insira o nome do convidado" />
-        <button id="botao">Adicionar</button>
-    </div>
+    <main>
+        <section class="title-sec">
+            <div class="title">
+                <h1>Lista de convidados</h1>
+                <hr />
+            </div>
+        </section>
+        <section class="list">
+            <div class="list-box">
+                <ul id="lista"></ul>
+            </div>
+            <div class="input-box">
+                <input id="campo" type="text" placeholder="Insira o nome do convidado" />
+                <button id="botao">Adicionar</button>
+            </div>
+        </section>
+    </main>   
+    <footer>
+        <div class="copyrights">&copy; Marçal Santarém - 2023</div>
+    </footer>
+    
     <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

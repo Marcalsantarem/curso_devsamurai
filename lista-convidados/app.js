@@ -17,8 +17,13 @@ function exibeLista(){
     lista.innerHTML = "";
     for (const convidado of convidados) {
         const elConvidado = document.createElement('li');
+        const elSpanNome = document.createElement("span");
+        elSpanNome.classList.add("name-span");
         const elNome = document.createTextNode(convidado.name);
+        elSpanNome.appendChild(elNome);
 
+        const elSpanRemove = document.createElement("span");
+        elSpanRemove.classList.add("remove-span");
         const excluir = document.createElement('a');
         excluir.setAttribute("href", "#");
         excluir.addEventListener("click", () => {
@@ -28,10 +33,11 @@ function exibeLista(){
         });
                 
         var excluirText = document.createTextNode("Excluir");
-                
         excluir.appendChild(excluirText);
-        elConvidado.appendChild(elNome);
-        elConvidado.appendChild(excluir);
+        elSpanRemove.appendChild(excluir);
+
+        elConvidado.appendChild(elSpanNome);
+        elConvidado.appendChild(elSpanRemove);
         lista.appendChild(elConvidado);
     }
 }
