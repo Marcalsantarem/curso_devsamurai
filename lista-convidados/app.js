@@ -6,15 +6,12 @@ const botao = document.querySelector('#botao');
 
 exibeLista();
         
-botao.addEventListener('click', () => {    
-    const nome = campo.value;
-    if (nome) {                
-        convidados.push({name: nome});
-        campo.value = "";
-        salvarConvidados();
-        exibeLista();
+botao.addEventListener('click', adicionaConvidado);
+campo.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        adicionaConvidado();
     }
-})
+});
 
 function exibeLista(){
     lista.innerHTML = "";
@@ -36,6 +33,16 @@ function exibeLista(){
         elConvidado.appendChild(elNome);
         elConvidado.appendChild(excluir);
         lista.appendChild(elConvidado);
+    }
+}
+
+function adicionaConvidado() {    
+    const nome = campo.value;
+    if (nome) {
+        convidados.push({name: nome});
+        campo.value = "";
+        salvarConvidados();
+        exibeLista();
     }
 }
 
