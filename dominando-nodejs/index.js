@@ -21,4 +21,14 @@ server.get("/customers/:id", (req, res) => {
   return res.status(status).json(customer);
 });
 
+server.post("/customers", (req, res) => {
+  const { name, site } = req.body;
+  const id = customers[customers.length - 1].id + 1;
+
+  const newCostumer = { id, name, site };
+  customers.push(newCostumer);
+
+  return res.status(201).json(newCostumer);
+});
+
 server.listen(3000);
