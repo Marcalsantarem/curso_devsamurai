@@ -1,3 +1,5 @@
+import Customer from "../models/Customer";
+
 const customers = [
   { id: 1, name: "Dev Samurai", site: "http://devsamurai.com.br" },
   { id: 2, name: "Google", site: "http://google.com" },
@@ -6,8 +8,12 @@ const customers = [
 
 class CustomersController {
   // Listagem dos registros
-  index(req, res) {
-    return res.json(customers);
+  async index(req, res) {
+    const data = await Customer.findAll({
+      limit: 1000,
+    });
+
+    return res.json(data);
   }
 
   // Recupera um registro
@@ -15,6 +21,8 @@ class CustomersController {
     const id = parseInt(req.params.id, 10);
     const customer = customers.find((item) => item.id === id);
     const status = customer ? 200 : 404;
+
+    console.log("GET :: /customers/:id ", customer);
 
     return res.status(status).json(customer);
   }
@@ -24,10 +32,10 @@ class CustomersController {
     const { name, site } = req.body;
     const id = customers[customers.length - 1].id + 1;
 
-    const newCostumer = { id, name, site };
-    customers.push(newCostumer);
+    const newCustomer = { id, name, site };
+    customers.push(newCustomer);
 
-    return res.status(201).json(newCostumer);
+    return res.status(201).json(newCustomer);
   }
 
   // Atualiza um registro
@@ -36,10 +44,10 @@ class CustomersController {
     const { name, site } = req.body;
 
     const index = customers.findIndex((item) => item.id === id);
-    const status = index >= 0 ? 201 : 404;
+    const status = index >= 0 ? 200 : 404;
 
     if (index >= 0) {
-      customers[index] = { id, name, site };
+      customers[index] = { id: parseInt(id, 10), name, site };
     }
 
     return res.status(status).json(customers[index]);
